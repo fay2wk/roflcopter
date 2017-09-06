@@ -29,14 +29,14 @@ def blocks(x_block, y_block, block_width, block_height, gap):
 
 def replay_or_quit():
     for event in pygame.event.get([pygame.KEYDOWN, pygame.KEYUP, pygame.QUIT]):
-	if event.type == pygame.QUIT:
-	   pygame.quit()
-	   quit()
+    if event.type == pygame.QUIT:
+       pygame.quit()
+       quit()
 
-	elif event.type == pygame.KEYDOWN:
-	   continue
+    elif event.type == pygame.KEYDOWN:
+       continue
 
-	return event.key
+    return event.key
 
 def makeTextObjs(text, font):
     textSurface = font.render(text, True, white)
@@ -58,7 +58,7 @@ def msgSurface(text):
     time.sleep(1)
 
     while replay_or_quit == None:
-    	clock.tick()
+        clock.tick()
 
     main()
 
@@ -86,37 +86,51 @@ def main():
 
     while not game_over:
 
-	for event in pygame.event.get():
-	    if event.type == pygame.QUIT:
-	        game_over = True
-	    if event.type == pygame.KEYDOWN:
-	        if event.key == pygame.K_UP:
-	           y_move = -5
-	    if event.type == pygame.KEYUP:
-	        if event.key == pygame.K_UP:
-	           y_move = 5
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            game_over = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+               y_move = -5
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_UP:
+               y_move = 5
 
-	    y += y_move
+        y += y_move
 
-	    surface.fill(black)
-	    rolfcopter(x, y, img)
-	    score(current_score)
+        surface.fill(black)
+        rolfcopter(x, y, img)
+        score(current_score)
 
-	    blocks(x_block, y_block, block_width, block_height, gap)
+        blocks(x_block, y_block, block_width, block_height, gap)
             x_block -= block_move
 
-	    if y > surfaceHeight - imageHeight or y < 0:
-	    	gameOver()
+        if y > surfaceHeight - imageHeight or y < 0:
+            gameOver()
         
             if x_block < (-1 * block_width):
-        	x_block = surfaceWidth
-        	block_height = randint(0, (surfaceHeight / 2))
+                x_block = surfaceWidth
+                block_height = randint(0, (surfaceHeight / 2))
         
-            
+            # earlier if statemets to test the logic
+            if x + imageHeight > x_block:
+                if x < x_block + block_width:
+                    if y < block_height:
+                        if x - imageWidth < block_width + x_block:
+                            gameOver()
+                       
+           # earlier if statemets to test the logic
+            if x + imageWidth > x_block:
+                if y + imageHeight > block_height + gap:
+                    if x < block_width + x_block:
+                        gameOver()
+
+            if x < x_block and x > x_block - block_move:
+                current_score += 1
 
 
-	    pygame.display.update()
-	    clock.tick(60)
+        pygame.display.update()
+        clock.tick(60)
 
 main()
 pygame.quit()
