@@ -13,10 +13,10 @@ imageHeight = 40
 imageWidth = 40
 
 surface = pygame.display.set_mode((surfaceWidth, surfaceHeight))
-pygame.display.set_caption('Rolfcopter')
+pygame.display.set_caption('Roflcopter')
 clock = pygame.time.Clock()
 
-img = pygame.image.load('rolf.png')
+img = pygame.image.load('rofl.png')
 
 def score(count):
     font = pygame.font.Font('freesansbold.ttf', 20)
