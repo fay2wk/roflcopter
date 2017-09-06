@@ -111,22 +111,18 @@ def main():
         if x_block < (-1 * block_width):
         	x_block = surfaceWidth
         	block_height = randint(0, (surfaceHeight / 2))
-
+        
+        # earlier if statemets to test the logic
         if x + imageHeight > x_block:
         	if x < x_block + block_width:
-        		print('x')
         		if y < block_height:
-        			print('y cross upper')
         			if x - imageWidth < block_width + x_block:
-        				print('game over man')
-        				gameOver()
-
+        			   gameOver()
+        			   
+        # earlier if statemets to test the logic
         if x + imageWidth > x_block:
-        	print('x crossover')
         	if y + imageHeight > block_height + gap:
-        	    print('y')
         	    if x < block_width + x_block:
-        	    	print('game over man')
         	    	gameOver()
 
         if x < x_block and x > x_block - block_move:
