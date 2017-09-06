@@ -13,10 +13,10 @@ imageHeight = 40
 imageWidth = 40
 
 surface = pygame.display.set_mode((surfaceWidth, surfaceHeight))
-pygame.display.set_caption('Rolfcopter')
+pygame.display.set_caption('Roflcopter')
 clock = pygame.time.Clock()
 
-img = pygame.image.load('rolf.png')
+img = pygame.image.load('rofl.png')
 
 def score(count):
 	font = pygame.font.Font('freesansbold.ttf', 20)
@@ -118,7 +118,7 @@ def main():
         		if y < block_height:
         			if x - imageWidth < block_width + x_block:
         			   gameOver()
-        			   
+
         # earlier if statemets to test the logic
         if x + imageWidth > x_block:
         	if y + imageHeight > block_height + gap:
