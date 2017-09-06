@@ -103,7 +103,7 @@ def main():
 	    score(current_score)
 
 	    blocks(x_block, y_block, block_width, block_height, gap)
-        x_block -= block_move
+            x_block -= block_move
 
 	    if y > surfaceHeight - imageHeight or y < 0:
 	    	gameOver()
