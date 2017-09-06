@@ -19,28 +19,28 @@ clock = pygame.time.Clock()
 img = pygame.image.load('rolf.png')
 
 def score(count):
-	font = pygame.font.Font('freesansbold.ttf', 20)
-	text = font.render("Score: "+str(count), True, white)
-	surface.blit(text, [0,0])
+    font = pygame.font.Font('freesansbold.ttf', 20)
+    text = font.render("Score: "+str(count), True, white)
+    surface.blit(text, [0,0])
 
 def blocks(x_block, y_block, block_width, block_height, gap):
     pygame.draw.rect(surface, white, [x_block, y_block, block_width, block_height])
     pygame.draw.rect(surface, white, [x_block, y_block + block_height + gap, block_width, surface_height])
 
 def replay_or_quit():
-	for event in pygame.event.get([pygame.KEYDOWN, pygame.KEYUP, pygame.QUIT]):
-		if event.type == pygame.QUIT:
-			pygame.quit()
-			quit()
+    for event in pygame.event.get([pygame.KEYDOWN, pygame.KEYUP, pygame.QUIT]):
+	if event.type == pygame.QUIT:
+	   pygame.quit()
+	   quit()
 
-		elif event.type == pygame.KEYDOWN:
-			continue
+	elif event.type == pygame.KEYDOWN:
+	   continue
 
-		return event.key
+	return event.key
 
 def makeTextObjs(text, font):
-	textSurface = font.render(text, True, white)
-	return textSurface, textSurface.get_rect()
+    textSurface = font.render(text, True, white)
+    return textSurface, textSurface.get_rect()
 
 def msgSurface(text):
     smallText = pygame.font.Font('freesansbold.ttf', 20)
@@ -64,7 +64,7 @@ def msgSurface(text):
 
 
 def gameOver():
-	msgSurface('Ded')
+    msgSurface('Ded')
 
 def rolfcopter(x, y, image):
     surface.blit(img, (x,y))
@@ -86,15 +86,15 @@ def main():
 
     while not game_over:
 
-	    for event in pygame.event.get():
-	        if event.type == pygame.QUIT:
-	            game_over = True
-	        if event.type == pygame.KEYDOWN:
-	        	if event.key == pygame.K_UP:
-	        		y_move = -5
-	        if event.type == pygame.KEYUP:
-	        	if event.key == pygame.K_UP:
-	        		y_move = 5
+	for event in pygame.event.get():
+	    if event.type == pygame.QUIT:
+	        game_over = True
+	    if event.type == pygame.KEYDOWN:
+	        if event.key == pygame.K_UP:
+	           y_move = -5
+	    if event.type == pygame.KEYUP:
+	        if event.key == pygame.K_UP:
+	           y_move = 5
 
 	    y += y_move
 
@@ -108,25 +108,25 @@ def main():
 	    if y > surfaceHeight - imageHeight or y < 0:
 	    	gameOver()
         
-        if x_block < (-1 * block_width):
+            if x_block < (-1 * block_width):
         	x_block = surfaceWidth
         	block_height = randint(0, (surfaceHeight / 2))
         
-        # earlier if statemets to test the logic
-        if x + imageHeight > x_block:
+            # earlier if statemets to test the logic
+            if x + imageHeight > x_block:
         	if x < x_block + block_width:
-        		if y < block_height:
-        			if x - imageWidth < block_width + x_block:
-        			   gameOver()
+        	    if y < block_height:
+        		if x - imageWidth < block_width + x_block:
+        		   gameOver()
         			   
-        # earlier if statemets to test the logic
-        if x + imageWidth > x_block:
-        	if y + imageHeight > block_height + gap:
-        	    if x < block_width + x_block:
-        	    	gameOver()
+           # earlier if statemets to test the logic
+           if x + imageWidth > x_block:
+               if y + imageHeight > block_height + gap:
+        	   if x < block_width + x_block:
+        	      gameOver()
 
-        if x < x_block and x > x_block - block_move:
-        	current_score += 1
+           if x < x_block and x > x_block - block_move:
+               current_score += 1
 
 
 	    pygame.display.update()
